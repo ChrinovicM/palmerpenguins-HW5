@@ -1,0 +1,26 @@
+---
+title: "Palmer Penguins Analysis"
+author: "Chrinovic Mukulu"
+date: "2025-10-01"
+output: word_document
+---
+
+```{r}
+
+library(palmerpenguins)
+
+numeric_means <- apply(penguins[, sapply(penguins, is.numeric)], 2, mean, na.rm = TRUE)
+numeric_means
+
+species_counts <- tapply(penguins$species, penguins$species, length)
+species_counts
+
+bill_length_means <- lapply(split(penguins$bill_length_mm, penguins$species), mean, na.rm = TRUE)
+bill_length_means
+
+summary_table <- sapply(penguins[, sapply(penguins, is.numeric)], function(x) {
+  c(mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE))
+})
+summary_table
+```
+
